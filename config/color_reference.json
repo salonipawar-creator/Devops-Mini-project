@@ -1,0 +1,73 @@
+{
+  "disclaimer": "Academic demonstration only. Not intended for medical diagnosis or treatment. Results must not be used as a substitute for professional medical testing.",
+  "strip_layout": {
+    "name": "demo_10_pad_vertical_strip",
+    "description": "Synthetic/demo layout. Replace with manufacturer-specific calibrated layout before any real validation work.",
+    "pad_count": 10,
+    "orientation": "vertical",
+    "relative_strip_bounds": { "x": 0.42, "y": 0.08, "width": 0.16, "height": 0.84 },
+    "pads": [
+      { "parameter": "glucose", "order": 1, "relative_center_y": 0.08 },
+      { "parameter": "protein", "order": 2, "relative_center_y": 0.173 },
+      { "parameter": "ph", "order": 3, "relative_center_y": 0.266 },
+      { "parameter": "ketones", "order": 4, "relative_center_y": 0.359 },
+      { "parameter": "blood", "order": 5, "relative_center_y": 0.452 },
+      { "parameter": "leukocytes", "order": 6, "relative_center_y": 0.545 },
+      { "parameter": "nitrite", "order": 7, "relative_center_y": 0.638 },
+      { "parameter": "specific_gravity", "order": 8, "relative_center_y": 0.731 },
+      { "parameter": "bilirubin", "order": 9, "relative_center_y": 0.824 },
+      { "parameter": "urobilinogen", "order": 10, "relative_center_y": 0.917 }
+    ]
+  },
+  "references": {
+    "glucose": [
+      { "category": "negative", "rgb": [248, 203, 104] },
+      { "category": "trace", "rgb": [182, 178, 82] },
+      { "category": "high", "rgb": [91, 135, 68] }
+    ],
+    "protein": [
+      { "category": "negative", "rgb": [231, 220, 95] },
+      { "category": "trace", "rgb": [166, 193, 90] },
+      { "category": "high", "rgb": [78, 150, 102] }
+    ],
+    "ph": [
+      { "category": "low", "rgb": [237, 151, 64] },
+      { "category": "normal", "rgb": [183, 179, 70] },
+      { "category": "high", "rgb": [72, 142, 111] }
+    ],
+    "ketones": [
+      { "category": "negative", "rgb": [239, 185, 153] },
+      { "category": "trace", "rgb": [202, 113, 142] },
+      { "category": "high", "rgb": [117, 61, 109] }
+    ],
+    "blood": [
+      { "category": "negative", "rgb": [238, 203, 78] },
+      { "category": "trace", "rgb": [156, 165, 69] },
+      { "category": "high", "rgb": [74, 112, 74] }
+    ],
+    "leukocytes": [
+      { "category": "negative", "rgb": [232, 206, 178] },
+      { "category": "trace", "rgb": [197, 151, 193] },
+      { "category": "high", "rgb": [128, 89, 160] }
+    ],
+    "nitrite": [
+      { "category": "negative", "rgb": [245, 213, 202] },
+      { "category": "positive", "rgb": [215, 116, 168] }
+    ],
+    "specific_gravity": [
+      { "category": "low", "rgb": [59, 139, 112] },
+      { "category": "normal", "rgb": [120, 154, 83] },
+      { "category": "high", "rgb": [201, 165, 70] }
+    ],
+    "bilirubin": [
+      { "category": "negative", "rgb": [232, 196, 137] },
+      { "category": "moderate", "rgb": [183, 124, 91] },
+      { "category": "high", "rgb": [124, 83, 69] }
+    ],
+    "urobilinogen": [
+      { "category": "normal", "rgb": [239, 177, 139] },
+      { "category": "moderate", "rgb": [218, 123, 119] },
+      { "category": "high", "rgb": [169, 82, 110] }
+    ]
+  }
+}

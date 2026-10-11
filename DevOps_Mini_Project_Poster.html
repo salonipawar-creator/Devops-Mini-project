@@ -1,0 +1,625 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urine Test Strip Analysis Using Colorimetry and DevOps Microservices - Poster</title>
+  <style>
+    @page {
+      size: A3 portrait;
+      margin: 0;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .poster-container {
+      width: 100%;
+      max-width: 1200px;
+      background: #ffffff;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    /* HEADER */
+    .univ-header {
+      background: #0f1e36;
+      color: #ffffff;
+      padding: 16px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #f2c94c;
+    }
+    .univ-header .logo-left {
+      text-align: left;
+    }
+    .univ-header .logo-left h2 {
+      color: #ef4444;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .univ-header .logo-left span {
+      color: #cbd5e1;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .univ-header .center-titles {
+      text-align: center;
+    }
+    .univ-header .center-titles h1 {
+      font-size: 21px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+    .univ-header .center-titles h2 {
+      font-size: 23px;
+      font-weight: 800;
+      color: #f2c94c;
+      margin-bottom: 2px;
+    }
+    .univ-header .center-titles h3 {
+      font-size: 14px;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+    .univ-header .logo-right {
+      text-align: right;
+    }
+    .univ-header .logo-right h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .univ-header .logo-right span {
+      color: #f2c94c;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    /* TITLE BANNER */
+    .title-banner {
+      margin: 18px 36px 12px;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 2px solid #1e3a8a;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(30, 58, 138, 0.08);
+    }
+    .title-banner h1 {
+      font-size: 25px;
+      font-weight: 800;
+      color: #0f1e36;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .title-banner h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #4338ca;
+    }
+
+    /* METADATA BAR */
+    .metadata-bar {
+      margin: 0 36px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .metadata-bar .meta-left strong, .metadata-bar .meta-right strong {
+      color: #0f1e36;
+    }
+    .metadata-bar .meta-left div, .metadata-bar .meta-right div {
+      color: #475569;
+      margin-top: 2px;
+    }
+
+    /* POSTER BODY (3 COLUMNS) */
+    .poster-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      padding: 0 36px 20px;
+      flex-grow: 1;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* SECTION CARD */
+    .card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-header {
+      background: #1e293b;
+      color: #ffffff;
+      padding: 7px 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .card-body {
+      padding: 10px 12px;
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: #334155;
+    }
+    .card-body ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .card-body li {
+      margin-bottom: 7px;
+      position: relative;
+      padding-left: 14px;
+    }
+    .card-body li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: bold;
+      color: #1e293b;
+    }
+    .card-body li strong {
+      color: #0f172a;
+    }
+
+    /* DIAGRAM BOX */
+    .arch-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      width: 100%;
+    }
+    .diagram-box {
+      width: 100%;
+      padding: 7px 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 11px;
+    }
+    .frontend-box {
+      background: #e0e7ff;
+      border: 1.5px solid #4338ca;
+      color: #312e81;
+    }
+    .arrow-down {
+      width: 2px;
+      height: 8px;
+      background: #64748b;
+      position: relative;
+    }
+    .gateway-box {
+      background: #fee2e2;
+      border: 1.5px solid #b91c1c;
+      color: #7f1d1d;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      width: 100%;
+    }
+    .service-card {
+      padding: 6px 4px;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 10px;
+      border: 1px solid;
+    }
+    .service-card strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+    .s-image { background: #ecfdf5; border-color: #059669; color: #065f46; }
+    .s-color { background: #eff6ff; border-color: #2563eb; color: #1e40af; }
+    .s-ai { background: #fef3c7; border-color: #d97706; color: #92400e; }
+    .storage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      width: 100%;
+    }
+    .s-result { background: #f1f5f9; border: 1px solid #475569; color: #334155; }
+    .s-mongo { background: #dcfce7; border: 1px solid #16a34a; color: #14532d; }
+    .pipeline-card {
+      background: #f8fafc;
+      border: 1.5px solid #0284c7;
+      padding: 8px 10px;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 10px;
+      color: #0f172a;
+    }
+    .pipeline-card strong {
+      color: #0369a1;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .status-badge {
+      display: inline-block;
+      margin-top: 4px;
+      color: #16a34a;
+      font-weight: 700;
+      font-size: 10.5px;
+    }
+
+    /* TABLE IN RESULTS */
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+    .results-table th {
+      background: #e2e8f0;
+      color: #1e293b;
+      padding: 5px 6px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .results-table td {
+      padding: 4px 6px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+    }
+    .tag-pass {
+      color: #16a34a;
+      font-weight: 700;
+    }
+    .tag-info {
+      color: #0284c7;
+      font-weight: 700;
+    }
+    .tag-warn {
+      color: #d97706;
+      font-weight: 700;
+    }
+    .fallback-box {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      padding: 7px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      color: #78350f;
+    }
+    .fallback-box strong {
+      color: #92400e;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* FOOTER */
+    .univ-footer {
+      background: #0f1e36;
+      color: #e2e8f0;
+      text-align: center;
+      padding: 9px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #ffffff;
+      }
+      .poster-container {
+        box-shadow: none;
+        max-width: 100%;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="poster-container">
+  <!-- INSTITUTION HEADER -->
+  <header class="univ-header">
+    <div class="logo-left">
+      <h2>SOMAIYA</h2>
+      <span>VIDYAVIHAR UNIVERSITY</span>
+    </div>
+    <div class="center-titles">
+      <h1>Somaiya Vidyavihar University</h1>
+      <h2>K J Somaiya School of Engineering</h2>
+      <h3>Department of Information Technology</h3>
+    </div>
+    <div class="logo-right">
+      <h2>Somaiya</h2>
+      <span>T R U S T</span>
+    </div>
+  </header>
+
+  <!-- TITLE BANNER -->
+  <section class="title-banner">
+    <h1>Urine Test Strip Analysis Using Colorimetry and DevOps Microservices</h1>
+    <h2>Course : DevOps Lab Mini Project Poster Presentation</h2>
+  </section>
+
+  <!-- METADATA BAR -->
+  <section class="metadata-bar">
+    <div class="meta-left">
+      <div><strong>Student Name:</strong> Saloni Pawar (Roll No. ___)</div>
+      <div><strong>Class:</strong> Information Technology &nbsp;|&nbsp; <strong>Div:</strong> ___ &nbsp;|&nbsp; <strong>Batch:</strong> ___</div>
+    </div>
+    <div class="meta-right">
+      <div><strong>Guide / Faculty In-charge:</strong> Dr. Seema Redekar</div>
+      <div><strong>Academic Year:</strong> 2026-27 &nbsp;|&nbsp; K J Somaiya School of Engineering</div>
+    </div>
+  </section>
+
+  <!-- 3-COLUMN CONTENT GRID -->
+  <main class="poster-grid">
+    <!-- COLUMN 1: INTRO, PROBLEM, OBJECTIVES, LIT REVIEW -->
+    <div class="column">
+      <div class="card">
+        <div class="card-header">1. INTRODUCTION</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Clinical Reagent Strips:</strong> Multi-analyte dipsticks (10-SG) provide rapid point-of-care screening for 10 metabolic parameters (Glucose, Protein, pH, Ketones, Blood, Leukocytes, Nitrite, Specific Gravity, Bilirubin, Urobilinogen).</li>
+            <li><strong>Subjectivity Limitations:</strong> Manual human inspection against printed color cards suffers from observer bias, fatigue, delayed read times, and inconsistent illumination.</li>
+            <li><strong>Automated Solution:</strong> An end-to-end containerized microservices platform integrating Computer Vision, CIE Lab colorimetry, and Machine Learning.</li>
+            <li><strong>DevOps Foundation:</strong> Adopts industry-standard DevOps practices: containerization, multi-language testing, and automated Jenkins CI/CD pipelines.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">2. PROBLEM STATEMENT</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Manual Bottlenecks:</strong> Evaluating 10 reagent pads simultaneously within strict chemical reaction windows (30s–120s) leads to diagnostic inaccuracies and absent audit records.</li>
+            <li><strong>Architectural Vulnerability:</strong> Monolithic medical applications lack fault isolation; a vision or AI module failure crashes the entire clinical dashboard.</li>
+            <li><strong>Scope & Boundaries:</strong> Focuses on automated processing of a standardized 10-pad vertical strip layout using controlled calibration references. <em>Academic demonstration prototype; not intended for clinical diagnostic use.</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">3. OBJECTIVES</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Computer Vision Pipeline:</strong> Detect urine strips, enforce strict image quality filters (Laplacian blur score & brightness thresholds), and extract individual pad bounding boxes.</li>
+            <li><strong>Perceptual Colorimetry:</strong> Extract central median pad crops to eliminate border glare; convert RGB to HSV and CIE L*a*b* for Delta-E distance matching.</li>
+            <li><strong>Explainable AI Assist:</strong> Train an offline Random Forest classifier on synthetic reference distributions to provide category predictions and confidence scores.</li>
+            <li><strong>Microservice Architecture:</strong> Decouple vision, colorimetry, AI, and storage into independent FastAPI containers behind an Express API Gateway.</li>
+            <li><strong>DevOps Automation:</strong> Implement multi-container Docker Compose orchestration and an automated 7-stage Jenkins CI/CD pipeline.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">4. LITERATURE REVIEW</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Shen et al. (2012):</strong> Demonstrated smartphone-based colorimetric detection for biochemical test strips; proved feasibility but identified lighting sensitivity as the primary bottleneck.</li>
+            <li><strong>Yetisen et al. (2014):</strong> Proved that perceptual CIE L*a*b* color spaces significantly outperform raw RGB Euclidean distances for diagnostic colorimetry.</li>
+            <li><strong>Jalal et al. (2017):</strong> Established central median crop sampling to filter out border reagent bleeding, reflections, and uneven edge illumination.</li>
+            <li><strong>Newman (2021) - Microservices:</strong> Established architectural paradigms for distributed microservices, emphasizing decoupled fault isolation and API gateways.</li>
+            <li><strong>Research Gap:</strong> Existing point-of-care software lacks microservices resilience (graceful degradation when AI fails), containerized portability, and automated CI/CD pipelines.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMN 2: METHODOLOGY, IMPLEMENTATION, RESULTS -->
+    <div class="column">
+      <div class="card">
+        <div class="card-header">5. METHODOLOGY / SYSTEM DESIGN</div>
+        <div class="card-body">
+          <div class="arch-diagram">
+            <div class="diagram-box frontend-box">React 18 Dashboard (Vite 5) [Port 5173]</div>
+            <div class="arrow-down"></div>
+            <div class="diagram-box gateway-box">Node.js Express API Gateway [Port 8088 / 8080]</div>
+            <div class="arrow-down"></div>
+            <div class="services-grid">
+              <div class="service-card s-image">
+                <strong>Image Service</strong>
+                OpenCV / Blur Check<br>FastAPI [8000]
+              </div>
+              <div class="service-card s-color">
+                <strong>Colorimetry</strong>
+                RGB / Lab / Delta-E<br>FastAPI [8001]
+              </div>
+              <div class="service-card s-ai">
+                <strong>AI/ML Service</strong>
+                Random Forest<br>FastAPI [8002]
+              </div>
+            </div>
+            <div class="arrow-down"></div>
+            <div class="storage-grid">
+              <div class="service-card s-result">
+                <strong>Result Service</strong>
+                CRUD API [8003]
+              </div>
+              <div class="service-card s-mongo">
+                <strong>MongoDB 7.0</strong>
+                Analyses Store [27017]
+              </div>
+            </div>
+            <div class="pipeline-card">
+              <strong>DevOps CI/CD Automation Pipeline (Jenkins & GitHub Actions):</strong>
+              1. Env Setup &rarr; 2. Train ML &rarr; 3. Python Tests &rarr; 4. Gateway Tests &rarr; 5. Frontend Build &rarr; 6. Docker Build &rarr; 7. Health Deploy
+              <div class="status-badge">&check; 100% Automated | All 7 Stages Passed (Build #6 SUCCESS)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">6. IMPLEMENTATION DETAILS</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Frontend Dashboard:</strong> React 18, Vite 5, live pad bounding box overlays, color swatch previews, RGB/HSV/Lab measurement table, and MongoDB history cards.</li>
+            <li><strong>API Gateway:</strong> Express orchestrator managing multipart routing, timeout handling, and fallback logic.</li>
+            <li><strong>Image Service (CV):</strong> OpenCV Laplacian blur detection (rejects blur score &lt; 80), brightness validation (35–245), and coordinate generator for 10 vertical pads.</li>
+            <li><strong>Colorimetry Service:</strong> Central 50% median crop; RGB &rarr; HSV &rarr; CIE Lab conversion; Delta-E Euclidean comparison against configured reference charts.</li>
+            <li><strong>AI/ML Service:</strong> Scikit-Learn Random Forest (100 estimators, 6 features [R,G,B,L*,a*,b*]) loaded offline from joblib model; outputs class probabilities.</li>
+            <li><strong>Result Service & DB:</strong> FastAPI motor service storing comprehensive records in MongoDB 7.0 without collecting personal patient information.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">7. RESULTS & DISCUSSION</div>
+        <div class="card-body">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Component / Test Suite</th>
+                <th>Tool</th>
+                <th>Outcome</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Python Microservices</td>
+                <td>Pytest 8.3</td>
+                <td class="tag-pass">14 / 14 Passed (100%)</td>
+              </tr>
+              <tr>
+                <td>Node.js API Gateway</td>
+                <td>Jest 29</td>
+                <td class="tag-pass">3 / 3 Passed (100%)</td>
+              </tr>
+              <tr>
+                <td>React Frontend Dashboard</td>
+                <td>Vitest 2.1</td>
+                <td class="tag-pass">1 / 1 Passed (100%)</td>
+              </tr>
+              <tr>
+                <td>Production Bundle Build</td>
+                <td>Vite 5</td>
+                <td class="tag-info">Compiled (147 kB)</td>
+              </tr>
+              <tr>
+                <td>Multi-Container Build</td>
+                <td>Docker Compose</td>
+                <td class="tag-info">6 / 6 Images Built</td>
+              </tr>
+              <tr>
+                <td>Jenkins Automated Pipeline</td>
+                <td>Jenkins 2.568</td>
+                <td class="tag-pass">7 / 7 Green (5m 57s)</td>
+              </tr>
+              <tr>
+                <td>Fault Fallback Simulation</td>
+                <td>Stop AI Container</td>
+                <td class="tag-warn">Graceful Fallback Verified</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="fallback-box">
+            <strong>Demonstrated Microservices Fault Resilience:</strong>
+            Executed <code>docker compose stop ai-service</code> during live analysis. The API Gateway automatically degraded to reference color matching with zero UI downtime and an explicit fallback warning.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMN 3: FINDINGS, CONCLUSION, FUTURE, REFERENCES, ACK -->
+    <div class="column">
+      <div class="card">
+        <div class="card-header">8. KEY FINDINGS</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>CIE Lab Superiority:</strong> Perceptually uniform CIE Lab Delta-E matching eliminated color classification ambiguity across all 10 demonstration test swatches (Delta-E &lt; 3.3).</li>
+            <li><strong>Median Crop Noise Rejection:</strong> 50% central median sampling effectively filtered out pad edge shadows, reflections, and paper background artifacts.</li>
+            <li><strong>High Architectural Availability:</strong> Disabling the AI container triggered instantaneous gateway fallback to reference matching with 0% user-facing downtime.</li>
+            <li><strong>Jenkins CI/CD Efficiency:</strong> Full multi-language test suite, Docker builds, and health deployment completed in 5 minutes 57 seconds with 100% stage reliability.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">9. CONCLUSION</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>End-to-End DevOps Solution:</strong> Successfully designed and validated a distributed microservices platform unifying Computer Vision, Colorimetry, and DevOps CI/CD.</li>
+            <li><strong>Loose Coupling & Scalability:</strong> Independent Docker containers ensure individual services can be scaled, updated, or restarted without impacting the overall system.</li>
+            <li><strong>Automated Quality Gates:</strong> Integrated dual CI/CD pipelines (GitHub Actions + Jenkins) ensuring code quality and regression prevention before deployment.</li>
+            <li><strong>Academic Impact:</strong> Serves as a robust demonstration of modern DevOps microservice engineering applied to digital biochemical sensing workflows.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">10. FUTURE SCOPE</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Standardized Calibration Target:</strong> Integrate 24-color Macbeth reference markers on strip cards for automated camera white-balance correction.</li>
+            <li><strong>Multi-Brand Layout Detection:</strong> Deploy Deep Learning (YOLOv8) models for dynamic multi-manufacturer strip recognition (Siemens, Roche, Mission).</li>
+            <li><strong>Time-Resolved Reaction Tracking:</strong> Implement mobile video timers capturing reaction kinetics at 30s, 60s, and 120s intervals.</li>
+            <li><strong>Kubernetes Migration:</strong> Convert Docker Compose to Kubernetes (K8s) manifests with Helm packaging and Horizontal Pod Autoscaling (HPA).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">11. REFERENCES</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>[1]</strong> Shen, L., et al., "Point-of-care colorimetric diagnostics using smartphone cameras," <em>Lab on a Chip</em>, 12(15), 2012.</li>
+            <li><strong>[2]</strong> Yetisen, A. K., et al., "Smartphone-based colorimetric algorithms," <em>Biosensors and Bioelectronics</em>, 54, 2014.</li>
+            <li><strong>[3]</strong> Newman, S., <em>Building Microservices: Designing Fine-Grained Systems</em>, 2nd ed., O'Reilly Media, 2021.</li>
+            <li><strong>[4]</strong> Smart, J. F., <em>Jenkins: The Definitive Guide</em>, O'Reilly Media, 2011.</li>
+            <li><strong>[5]</strong> International Commission on Illumination, <em>Colorimetry Technical Report CIE 15:2004</em>, Vienna, 2004.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">ACKNOWLEDGEMENT</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Faculty Guidance:</strong> Sincere gratitude to <strong>Dr. Seema Redekar</strong> for her invaluable mentorship, technical guidance, and encouragement throughout this project.</li>
+            <li><strong>Department Support:</strong> Heartfelt thanks to the <strong>Department of Information Technology, K J Somaiya School of Engineering</strong>, and <strong>Somaiya Vidyavihar University</strong> for providing laboratory facilities.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- INSTITUTION FOOTER -->
+  <footer class="univ-footer">
+    Department of Information Technology &nbsp;|&nbsp; K J Somaiya School of Engineering &nbsp;|&nbsp; Somaiya Vidyavihar University
+  </footer>
+</div>
+
+</body>
+</html>

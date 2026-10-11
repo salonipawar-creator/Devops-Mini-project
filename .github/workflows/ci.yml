@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Train demonstration ML model
+        run: python ml/train.py
+
+      - name: Run Python tests
+        run: pytest tests/python
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install and test API Gateway
+        run: |
+          cd api-gateway
+          npm install
+          npm test
+
+      - name: Install, test, and build frontend
+        run: |
+          cd frontend
+          npm install
+          npm test
+          npm run build
+
+      - name: Build Docker images
+        run: docker compose build

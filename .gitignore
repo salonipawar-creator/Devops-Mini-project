@@ -1,0 +1,11 @@
+node_modules/
+dist/
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+.env
+ml/saved_model/*.joblib
+!ml/saved_model/.gitkeep
+coverage/
+npm-debug.log*
